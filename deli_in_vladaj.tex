@@ -1,0 +1,34 @@
+\chapter{Deli in vladaj}
+
+\section{Strassenov algoritem}
+
+\exe{Izvedi en korak Strassenovega algoritma. Matriki sta
+$$
+A=\begin{bmatrix}
+1 & 4 & 1 & 4 \\
+2 & 3 & 2 & 3 \\
+3 & 2 & 3 & 2 \\
+4 & 1 & 4 & 1 \\
+\end{bmatrix}
+B=\begin{bmatrix}
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 \\
+\end{bmatrix}
+$$}
+\ans{TODO: Glej zgled pri APS2.}
+
+
+\exe{Zapiši rekurzivno formulo za časovno zahtevnost Strassenovga algoritma za matrike velikosti $n \times n$ glede na parameter $n$. Reši formulo s pomočjo mojstrovega izreka.}
+\ans{$$ T(n) = 7T(n/2) + O(n^2) = O(n^{\log_2 7}) $$}
+
+
+\exe{Zapiši rekurzivno formulo za časovno zahtevnost Strassenovga algoritma za matrike velikosti $n \times n$ glede na parameter velikost matrike $n^2$. Reši formulo s pomočjo mojstrovega izreka.}
+\ans{$$ T(n^2) = 7T(n^2/4) + O(n^2) $$
+$$ T(x) = 7T(x/4) + O(x) = O(x^{\log_4 7}) = O((n^2)^{\log_4 7}) = O(n^{2\log_4 7}) = O(n^{\log_2 7})$$}
+
+
+\section{Namigi in rešitve izbranih nalog}
+
+\shipoutAnswer

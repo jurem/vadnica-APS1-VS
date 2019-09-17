@@ -1,0 +1,195 @@
+\chapter{Problemi in algoritmi}
+
+\section{Osnovni pojmi}
+
+\exe{Zakaj je \vic{mestni} (arabski oz. indijski) zapis števil tako pomemben (tudi za algoritmiko)? Namig: predstavljajte si algoritem za seštevanje (ali pa množenje) rimskih številk.}
+
+
+\exe{Kaj je \vic{število} \angl{number}, \vic{številka} \angl{numeral} in \vic{števka} \angl{digit}? In kaj je cifra in kaj mož?}
+
+
+\exe{Kaj je bit in kaj je bajt? Kaj je več 42 kB ali 42 KiB? Koliko bitov je v 42 MiB?}
+
+
+\exe{Od kje pride izraz \vic{algoritem}? S kakšnimi algoritmi se je ukvarjala dotična oseba?}
+
+
+\exe{Opredeli (intuitivno, vendar natančno) pojem \vic{algoritma}. Obrazloži pomembne dele definicije.}
+
+
+\exe{Sošolki povej en \vic{dvoumen} in en \vic{nejasen} stavek (vendar ne oboje). Kaj je težje sošolka ali stavek?}
+
+
+\exe{Kaj je \vic{računski problem}? Podaj primer računskega problema, ki ni povezan z računanjem.}
+
+
+\exe{Pojasni razliko med \vic{problemom} (kadar v algoritmiki rečemo problem imamo v mislih računski problem), \vic{nalogo} in \vic{rešitvijo}.}
+
+
+\exe{Naštej in obrazloži vrste \vic{računskih problemov}: iskalni, odločitveni, preštevalni, naštevalni in optimizacijski. Za vsako vrsto podaj primer.}
+
+
+\exe{Preveri veljavnost trditve:
+\begin{enumerate}
+\item Seštevanje, odštevanje, množenje dve števil so računski problemi, iskanje najmanjšega elementa v seznamu števil pa ni.
+\item Za dana števila $x,y,z$ je vprašanje ali je $x+y=z$ odločitiveni problem.
+\item Ali v danem seznamu elementov obstaja dani element je iskalni problem.
+\item Urejanje seznama $5,2,9,3$ je računski problem.
+\item Naloga problema poišči najbližjo točko koordinatnemu središču je seznam točk $(3,2), (1,5),(4,-2)$
+\end{enumerate}
+}
+
+
+\exe{Zakaj je Turingov stroj pomemben za algoritmiko? Oglej si poljuben film o Alanu Turingu.}
+
+
+\section{Snovanje in implementacija algoritmov}
+
+\exe{Kaj je \vic{predpogoj} za dobro snovanje algoritmov?}
+\ans{Dobro razumevanje problema preko natančne (matematične) definicije.}
+
+
+\exe{Obrazloži nekaj kriterijev po katerih ocenjujemo kakovost algoritmov. Kateri kriterij je najpomembnejši?}
+\ans{Pravilnost, učinkovitost, prilagodljivost, enostavnost, implementabilnost. Pravilnost je temelj vsakega algoritma.}
+
+
+\exe{Naštej in primerjaj načine (\vic{opisni jeziki}) za opis algoritmov. Kateri načini so primernejši za ljudi in kateri za računalnike?}
+
+
+\exe{Sošolki v naravnem jeziku obrazloži algoritem za iskanje največjega elementa v tabeli? Nato skupaj narišita diagram poteka za ta algoritem.}
+
+
+\exe{Obrazloži faze razvoja algoritma od idejene zasnove do njegovega izvajanja. Obrazloži posamezne stopnje in semantične vrzeli med njimi. Kateri del je bolj abstrakten in kateri manj?}
+
+
+\exe{Naštej nekaj pristopov oz. \vic{metod za snovanje} algoritmov. Več zabave s tem bo v sledečih poglavjih.}
+
+
+\exe{Kaj je \vic{sintaktična} in kaj \vic{semantična} napaka v programu? Kaj je \vic{programski hrošč?}}
+
+
+\exe{Naštej nekaj načinov za \vic{razhroščevanje} kode?}
+
+
+\exe{Kaj je \vic{profiliranje} in kaj \vic{instrumentacija} kode?}
+
+
+\exe{Kaj je sled algoritma?}
+
+
+\exe{Ali za izvajanje algoritma vedno potrebujemo računalnik? Obrazloži.}
+
+
+\section{Algoritmi od vsepovsod}
+
+
+\exetitlbl{Največji in najmanjši element}{alg:minmax}{Zasnuj algoritme za iskanje največjega in najmanjšega elementa ter oboje hkrati. Kateri izmed algoritmov naredi manj primerjav elementov?}
+
+
+\exetitlbl{Zaporedno iskanje}{alg:seqsearch}{Zasnuj algoritem za iskanje danega elementa v dani tabeli. V čem je razlika v nalogi tega problema v primerjavi s problemom \quot{največji in najmanjši element} iz predhodne naloge?}
+
+
+\exetit{Ugani število}{S sošolko igrajta igro \quot{ugani število}: zamisli si število med 1 in 128, ona pa naj ugiba, možni odgovori so manjše, enako, večje. Koliko ugibanj potrebuje v najslabšem primeru v različnih pristopih, npr. zaporedno iskanje, razpolavljanje (bisekcija).}
+
+
+\exe{Načelo razpolavljanja (bisekcija) je eno izmed najbolj uporabnih načel v algoritmiki (in življenju nasploh). Kje se še uporablja?}
+ 
+
+\exetitlbl{Dvojiško iskanje}{alg:binsearch}{Zasnuj algoritem \vic{dvojiško iskanje}, ki uporablja načelo razpolavljanja, za iskanje števila v urejenem zaporedju. V čem je razlika med nalogo tega problema in nalogo problema \quot{zaporedno iskanje} iz naloge \refexe{alg:seqsearch}? Zapiši tako rekurzivno kot iterativno obliko algoritma.}
+
+
+\exetitlbl{Množenje s prištevanjem}{alg:mul-with-add}{Zasnuj algoritem za množenje dveh števil preko prištevanja. Namig: pomagaj si z definicijo množenja $a\cdot b = \underbrace{b + b + \dots + b}_{a-\text{krat}}$.}
+
+
+\exe{Kdo je bil Evklid iz Aleksandrije? S čim se je še ukvarjal poleg algoritmov?}
+
+
+\exe{Opiši \vic{Evklidov algoritem} za iskanje \vic{največjega skupnega delitelja}. Zapiši tako rekurzivno kot iterativno obliko algoritma.}
+
+
+\exe{Opiši še en algoritem za iskanje \vic{največjega skupnega delitelja}, ki deluje preko faktorizacije števil.}
+
+
+\exe{Prikaži sled Evklidovega algoritma za števili a) 123 in 456, b) 321 in 654 ter b) 59 in 61.}
+\ans{a) \begin{tabular}{lllll}
+\# & a & b & q & r \\
+\hline
+0 & 123 & 456 0 & 123 \\
+1 & 456 & 123 & 3 & 87 \\
+2 & 123 & 87 & 1 & 36 \\
+3 & 87 & 36 & 2 & 15 \\
+4 & 36 & 15 & 2 & 6 \\
+5 & 15 & 6 & 2 & 3 \\
+6 & 3 & 2 & 0 \\
+7 & 3 & 0 \\
+\end{tabular}}
+
+
+\exe{Kaj se zgodi po prvem koraku Evklidovega algoritma, če je prvo število manjše od drugega?}
+
+
+\exe{S pomočjo \vic{Eratostenovega sita} izračunaj praštevila manjša od $N=42$.}
+
+
+\exetit{Faktoriela}{Zapiši rekurzivni algoritem za izračun faktoriele glede na formulo $n!=n\cdot(n-1)!$ in $0!=1$. Ali je algoritem vsebuje repno rekurzijo? Če ne, ga spremeni, da jo bo, nato pa vse skupaj spremeni v iteracijo. Opazuj spremembe!}
+\ans{fun fac(n) is if n==0 then 1 else n*fac(n-1); fun factail(r, n) is if n==0 then r else factail(r*n,n-1).}
+
+
+\section{Preverjanje pravilnosti}
+
+\exe{Na svetovnem spletu poišči nekaj primerov znanih programskih hroščev.}
+
+
+\exe{Kaj je poglavitno vprašanje (intuitivno), ki si ga postavimo, ko preverjamo pravilnost nekega algoritma?}
+\ans{Ali program deluje, kot mislimo, da bi moralo delovati?}
+
+
+\exe{Naštej (štiri) načine s katerimi lahko preverjamo pravilnost algoritmov.}
+
+
+\exe{Utemelji pravilnost algoritma \quot{množenje s prištevanjem} (glej nalogo \refexe{alg:mul-with-add}) preko \vic{intuitivnega razumevanja}. Ali algoritem deluje za negativna števila?}
+
+
+\exe{Zakaj se pri razvoju programov zelo pogosto uporablja testiranje s testnimi primeri? Zakaj za testiranje algoritmov to pogosto ni zadostno?}
+
+
+\exe{Koliko različnih vhodov je možnih za Evklidov algoritem, če privzamemo 32-bitna števila? Koliko let bi trajalo popolno testiranje algoritma, če imamo na voljo testni sistem, ki vsako sekundo preizkusi miljardo ($10^9$) vhodov?}
+\ans{Št. vhodov: $2^{64}\approx1,8\cdot 10^{19}$, čas testiranja: $2^{64} / 10^9 / 60 / 60 / 24 / 365 = 585$ let.}
+
+
+\exe{Dano je polje dolžine 200. Tina Sredinec je implementirala algoritem, ki izračuna sredinsko pozicijo $m$ v polju med pozicijama $l$ (leva meja) in $r$ (desna meja), po formuli $m = (l+r)/2$. Vse spremenljivke vsebujejo 8 bitna nepredznačena števila. Kje se skriva programski hrošč? Kako bi program popravil?}
+\ans{Za $l=150$ in $r=190$ dobimo $l+r=340 (\bmod 256)=84$ in torej $m=(l+r)/2=42$, kar očitno ni sredina med 150 in 180. Popravek: $m=l+(r-l)/2$.}
+
+
+\exe{Ugotoviti želimo pravilnost nekega algoritma za urejanje seznama. Kateri dve lastnosti moramo preveriti?}
+\ans{Da rezultat vsebuje enake elemente kot vhodno zaporedje in da je rezultat urejen seznam.}
+
+
+\exe{V čem je prednost \vic{formalnega dokazovanja pravilnosti} algoritmov. Na katerem matematičnem načelu sloni dokazovanje pravilnosti algoritmov, ki vsebujejo zanke?}
+\ans{Zanesljivost pravilnosti, indukcija.}
+
+
+\exe{Formalni dokaz pravilnosti algoritma pogosto temelji na indukciji. Kaj je \vic{matematična indukcija}, \vic{hipoteza}, \vic{osnovni primer}, \vic{induktivna predpostavka} in \vic{induktivni korak}? V algoritmiki pa za dokazovanje zank uporabljamo tudi \vic{zančne invariante}.}
+
+
+\exe{S pomočjo matematične indukcije dokaži $\sum_{i=0}^{n}i=\frac{n(n+1)}{2}$.}
+
+
+\noindent\begin{minipage}{7.5cm}
+\exe{S pomočjo indukcije dokaži pravilnost algoritma za iskanje maksimuma v tabeli števil.}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{7cm}
+\vspace{1.2em}
+\begin{lstlisting}
+m = a[0]
+for i = 1 to n-1 do
+	if a[i] > m then m = a[i]
+\end{lstlisting}
+\end{minipage}
+
+
+\exe{S pomočjo indukcije dokaži pravilnost \quot{množenja s prištevanjem}.}
+
+
+\exe{Dokaži pravilnost Evklidovega algoritma. Uporabite znani izrek v zvezi s tem.}

@@ -1,0 +1,158 @@
+\chapter{Urejanje in izbiranje}
+
+
+% a-izbrani element, b-mesto kamor postavimo izbrani element
+\def\a#1{\textbf{#1}}
+\def\b#1{\underline{#1}}
+
+
+\setlength{\parindent}{0.0cm}
+%\hangindent=0.5cm
+\section{Navadna urejanja}
+
+\intro{Pod navadna urejanja sodijo \vic{navadno izbiranje} \angl{selection sort}, \vic{navadne zamenjave}, imenovano tudi urejanje z mehurčki \angl{bubble sort}, in \vic{navadno vstavljanjem} \angl{insertion sort}.}
+
+% ukazi za oznake v sledeh urejanja
+\def\m#1{\textbf{#1}}
+\def\b{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+
+
+\exetit{Navadno izbiranje}{Zapiši sled urejanja z navadnim izbiranjem v nepadajočem vrstnem redu za vhodno zaporedje $3,2,8,9,1,5,4,6,0,7$.}
+\ans{\vtop{\vskip-1em
+\begin{tabular}{l||llllllllllll}
+  & \b & 3 & 2 & 8 & 9 & 1 & 5 & 4 & 6 & \m0 & 7 \\
+\hline
+0 & & 0 \b & 2 & 8 & 9 & \m1 & 5 & 4 & 6 & 3 & 7 \\
+1 & & 0 & 1 \b & 8 & 9 & \m2 & 5 & 4 & 6 & 3 & 7 \\
+2 & & 0 & 1 & 2 \b & 9 & 8 & 5 & 4 & 6 & \m3 & 7 \\
+3 & & 0 & 1 & 2 & 3 \b & 8 & 5 & \m4 & 6 & 9 & 7 \\
+4 & & 0 & 1 & 2 & 3 & 4 \b & \m5 & 8 & 6 & 9 & 7 \\
+5 & & 0 & 1 & 2 & 3 & 4 & 5 \b & 8 & \m6 & 9 & 7 \\
+6 & & 0 & 1 & 2 & 3 & 4 & 5 & 6 \b & 8 & 9 & \m7 \\
+7 & & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \b & 9 & \m8 \\
+8 & & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \b & 9 \\
+\end{tabular}}}
+
+
+\exe{Zapiši sled urejanja z navadnim izbiranjem v nenaraščajočem vrstnem redu za vhodno zaporedje $3,2,8,9,1,5,4,6,0,7$.}
+
+
+\exe{Koliko primerjav in zamenjav naredi navadno izbiranje na vhodnem zaporedju a) $0,1,2,3,4,5,6,7,8,9$ in koliko na zaporedju b) $9,8,7,6,5,4,3,2,1,0$?}
+
+
+\exe{Koliko natančno primerjav $C(n)$ naredi navadno izbiranje na zaporedju velikosti $n$?}
+\ans{\vspace{-1em}$$ C(n) = \sum_{i=0}^{n-2} \sum_{j=i+1}^{n-1} 1 = \sum_{i=0}^{n-2} (n-i-1) = \sum_{i=1}^{n-1} i = \frac{n(n-1)}{2}. $$}
+
+
+\exe{Koliko asimptotično primerjav $C(n)$ naredi navadno izbiranje na zaporedju velikosti $n$? Odgovor zapiši tako s pomočjo tilda kot $\Theta$ notacije.}
+\ans{\vspace{-1em}$$ C(n) \sim \frac{n^2}{2} = \Theta(n^2). $$}
+
+
+\exe{Koliko (natančno in asimptotično) zamenjav $S(n)$ naredi navadno izbiranje na zaporedju velikosti $n$?}
+\ans{\vspace{-1em}$$ S(n) = n-1 \sim n = \Theta(n). $$}
+
+
+\exe{Navadno izbiranje izboljšamo tako, da na vsakem koraku hkrati poiščemo najmanjši in največji element v še neurejenem delu zaporedja. Nato oba elementa postavimo (zamenjava) na ustrezno mesto. Zapiši sled urejanja za zaporedje $$3,2,8,9,1,5,4,6,0,7.$$}
+\ans{\vtop{\vskip-1em
+\begin{tabular}{l||llllllllllll}
+  & \b & 3 & 2 & 8 & \m9 & 1 & 5 & 4 & 6 & \m0 & 7 \b \\
+\hline
+0 & & 0 \b & 2 & \m8 & 7 & \m1 & 5 & 4 & 6 & 3 \b & 9 \\
+1 & & 0 & 1 \b & 3 & \m7 & \m2 & 5 & 4 & 6 \b & 8 & 9 \\
+2 & & 0 & 1 & 2 \b & \m6 & \m3 & 5 & 4 \b & 7 & 8 & 9 \\
+3 & & 0 & 1 & 2 & 3 \b & \m4 & \m5 \b & 6 & 7 & 8 & 9 \\
+4 & & 0 & 1 & 2 & 3 & 4 \b\b & 5 & 6 & 7 & 8 & 9 \\
+\end{tabular}}}
+
+
+\exe{Na voljo imate algoritem za hkratno iskanje najmanjšega in največjega elementa, ki v zaporedju dolžine $n$ porabi $2n-2$ primerjav. Koliko natančno primerjav porabi s tem algoritmom izboljšano navadno izbiranje?}
+\ans{\vspace{-1em}$$ C(n) = \sum_{i=0}^{\frac{n-2}{2}} (2(n-2i)-2) = \frac{n(n+2)}{2}-2. $$}
+
+
+\exe{Na voljo imate algoritem za hkratno iskanje najmanjšega in največjega elementa, ki v zaporedju dolžine $n$ porabi $3/2n-2$ primerjav. Koliko natančno primerjav porabi s tem algoritmom izboljšano navadno izbiranje?}
+\ans{$$ C(n) = \sum_{i=0}^{\frac{n-2}{2}} (n-2i) = \sum_{i=2}^{n} 2i $$.}
+
+
+\exe{Navadno izbiranje želimo implementirati na enojno povezanem seznamu? Kolikšna je asimptotična časovna zahtevnost takega algoritma?}
+\ans{$\Theta(n^2)$. Najmanjši elementi si zapomnimo v kazalcu min. Zamenjavo izvedemo tako, da zamenjamo elementa (ne prevezujemo vozlišč).}
+
+
+\exetit{Navadne zamenjave}{Zapiši sled urejanja z navadnimi zamenjavami v nepadajočem vrstnem redu za vhodno zaporedje $3,2,8,9,1,5,4,6,0,7$.}
+\ans{\vtop{\vskip-1em
+\begin{tabular}{l||llllllllllll}
+0 & \b & 3 & 2 & 8 & 9 & 1 & 5 & 4 & 6 & 0 & 7 \\
+1 & & 0 \b & 3 & 2 & 8 & 9 & 1 & 5 & 4 & 6 & 7 \\
+2 & & 0 & 1 \b & 3 & 2 & 8 & 9 & 4 & 5 & 6 & 7 \\
+3 & & 0 & 1 & 2 \b & 3 & 4 & 8 & 9 & 5 & 6 & 7 \\
+3 & & 0 & 1 & 2 & 3 \b & 4 & 5 & 8 & 9 & 6 & 7 \\
+4 & & 0 & 1 & 2 & 3 & 4 \b & 5 & 6 & 8 & 9 & 7 \\
+5 & & 0 & 1 & 2 & 3 & 4 & 5 \b & 6 & 7 & 8 & 9 \\
+6 & & 0 & 1 & 2 & 3 & 4 & 5 & 6 \b & 7 & 8 & 9 \\
+7 & & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \b & 8 & 9 \\
+8 & & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \b & 9 \\
+\end{tabular}}}
+
+
+\exe{Zapiši sled urejanja z navadnimi zamenjavami v nenaraščajočem vrstnem redu za naslednje vhodno zaporedje $3,2,8,9,1,5,4,6,0,7$.}
+
+
+\exe{Urejanje z navadnimi izmenjavami izboljšamo tako, da v postopek končamo, če v zadnji iteraciji ni prišlo do nobene zamenjave. Takšen postopek pravilno uredi poljubno zaporedje? Utemelji.}
+
+
+\exe{Urejanje z navadnimi izmenjavami izboljšamo tako, da v naslednji iteraciji delamo primerjave le do indeksa zadnje zamenjave na predhodni iteraciji.}
+
+
+\exetit{Navadno stresanje}{TODO: Shaker sort - navadno stresanje - sled}
+
+
+\exetit{Navadno vstavljanje}{Zapiši sled urejanja z navadnimim vstavljanjem v nepadajočem vrstnem redu za vhodno zaporedje $3,2,8,9,1,5,4,6,0,7$.}
+\ans{\begin{tabular}{l||lllllllllll}
+i & \\
+\hline
+  & 3 \b & 2 & 8 & 9 & 1 & 5 & 4 & 6 & 0 & 7 \\
+1 & 2 & 3 \b & 8 & 9 & 1 & 5 & 4 & 6 & 0 & 7 \\
+2 & 2 & 3 & 8 \b & 9 & 1 & 5 & 4 & 6 & 0 & 7 \\
+3 & 2 & 3 & 8 & 9 \b & 1 & 5 & 4 & 6 & 0 & 7 \\
+4 & 1 & 2 & 3 & 8 & 9 \b & 5 & 4 & 6 & 0 & 7 \\
+5 & 1 & 2 & 3 & 5 & 8 & 9 \b & 4 & 6 & 0 & 7 \\
+6 & 1 & 2 & 3 & 4 & 5 & 8 & 9 \b & 6 & 0 & 7 \\
+7 & 1 & 2 & 3 & 4 & 5 & 6 & 8 & 9 \b & 0 & 7 \\
+8 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 8 & 9 \b & 7 \\
+9 & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \b \\
+\end{tabular}}
+
+
+\exe{Katera izmed osnovnih navadnih urejanj v tem razdelku so stabilna? Utemelji!}
+\ans{\begin{itemize}
+	\item Navadno izbiranje: ni stabilno, protiprimer $2,2,1$;
+	\item navadne zamenjave: je stabilno, enaki elementi se ne zamenjajo;
+	\item navadno vstavljanje: je stabilno, vstavljamo kvečjemju do enakega elementa.
+\end{itemize}}
+
+
+\exetit{Črno beli diski}{TODO: Levitin p.102. Danih je $2n$ diskov dveh barv: $n$ črnih in $n$ belih. Bele želimo spravit na levi konec in črna na desni konec. Dovoljena operacija je edino zamenjava dveh sosednjih diskov. Zasnuj algoritem za reševanje tega problema in določi število potrebnih zamenjav.}
+\ans{Uporabi navadne zamenjave ali navadno vstavljanje.}
+
+
+\section{Napredna urejana}
+
+\intro{V tem razdelku se lotimo algortimov za urejanje, katerih časovna zahtevnost je boljša od kvadratne.}
+
+\exe{Izračunaj delilno zaporedje za \vic{Shellovo urejanje} zaporedja 3141 števil, če je število zunanjih iteracij algoritma enako $t=\lfloor\log_2 n\rfloor -1$ in $h_t=1$ ter $h_{k-1}=2h_k+1$.}
+\ans{Število iteracij $t=10$ in delilno zaporedje je $(1023,511,255,127,63,31,15,7,3,1)$.}
+
+
+\exe{Uredi zaporedje $3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9, 3, 2, 3, 8, 4, 6$ s Shellovim urejanjem v naraščajočem vrstnem redu.}
+\ans{$t=3$, delilno zaporedje $(7,3,1)$.\\
+\begin{tabular}{c|ccccccccccccccccccccc}
+ h & ;3 & 1 & 4 & 1 & 5 & 9 & 2 & 6 & 5 & 3 & 5 & 8 & 9 & 7 & 9 & 3 & 2 & 3 & 8 & 4 & 6 \\
+\hline
+ 7 & ;3 & 1 & 2 & 1 & 5 & 4 & 2 & 6 & 3 & 3 & 3 & 8 & 9 & 6 & 9 & 5 & 4 & 5 & 8 & 9 & 7 \\
+ 3 & ;1 & 1 & 2 & 2 & 3 & 3 & 3 & 4 & 4 & 3 & 5 & 5 & 5 & 6 & 7 & 8 & 6 & 8 & 9 & 9 & 9 \\
+ 1 & ;1 & 1 & 2 & 2 & 3 & 3 & 3 & 3 & 4 & 4 & 5 & 5 & 5 & 6 & 6 & 7 & 8 & 8 & 9 & 9 & 9 \\
+\end{tabular}}
+
+
+\section{Namigi in rešitve izbranih nalog}
+
+\shipoutAnswer

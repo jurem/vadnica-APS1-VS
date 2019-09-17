@@ -1,0 +1,112 @@
+\documentclass[a4paper,12pt]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+
+% Okolje za pisanje nalog
+\usepackage{exercise}
+%\usepackage[answerdelayed]{exercise}
+\renewcommand{\ExerciseHeaderTitle}{~\textit{\ExerciseTitle}~~}
+\renewcommand{\ExerciseHeaderNB}{\textsf{\textbf{\thechapter.\theExercise}}}
+\renewcommand{\ExerciseHeader}{\par\noindent\ExerciseHeaderNB\ExerciseHeaderTitle}
+
+\renewcommand{\AnswerHeader}{{\par\noindent\small\ExerciseHeaderNB}~}
+\renewcommand{\AtBeginAnswer}{\footnotesize}
+
+% Bližnjice
+% exercise
+\def\exe#1{\begin{Exercise}#1\end{Exercise}}
+% exercise: +title
+\def\exetit#1#2{\begin{Exercise}[title=#1]#2\end{Exercise}}
+% exercise: +label
+\def\exelbl#1#2{\begin{Exercise}[label=#1]#2\end{Exercise}}
+% exercise: +title, +lable
+\def\exetitlbl#1#2#3{\begin{Exercise}[title=#1,label=#2]#3\end{Exercise}}
+% answer
+\def\ans#1{\begin{Answer}#1\end{Answer}}
+% reference to the exercise 
+\def\refexe#1{$\rightarrow$\ref{#1}}
+% algorithm name
+\def\alg#1{\quot{#1}}
+
+% Vrste nalog:
+% * zgled (naloga + rešitev + pojasnilo)
+% * naloga z namigom
+% * naloga z rešitvijo
+% * naloga (brez dodatkov)
+% * izziv (težja naloga)
+% * programerska naloga
+% * sadistična naloga (npr. pointer na pointer na pointer na pointer, forktree pri OS)
+
+
+\usepackage{xcolor}
+\usepackage{listings,lstautogobble}
+\lstset{frame=,
+	language=Pascal,
+	aboveskip=2mm,
+	belowskip=2mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	morekeywords={downto,return},
+	commentstyle=\color{gray},
+	stringstyle=\color{green},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+%	backgroundcolor=\color{yellow},
+    autogobble=true
+}
+
+% page layout
+\textwidth 15cm
+
+
+% % % % % % % % % % % % % % % % % % % % %
+
+
+\def\angl#1{(angl. #1)}
+\def\intro#1{\textit{#1}}
+\def\vic#1{\emph{#1}}
+\def\code#1{\textsf{#1}}
+\def\quot#1{''#1``}
+
+\def\NN{\ensuremath{\mathbb{N}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\def\RR{\ensuremath{\mathbb{R}}}
+
+\def\enumabc{\setlength{\itemsep}{0cm}\setlength{\parskip}{0cm}}
+
+
+\renewcommand{\labelenumi}{\alph{enumi})}
+\setlength{\parskip}{-0cm}
+
+
+% % % % % % % % % % % % % % % % % % % % %
+
+\begin{document}
+
+\tableofcontents
+
+\include{problemi_in_algoritmi}
+\include{zahtevnost}
+\include{podatkovne_strukture}
+\include{urejanja}
+\include{drevesa}
+\include{grafi}
+\include{metode_snovanja}
+\include{groba_sila}
+\include{deli_in_vladaj}
+%\chapter{Požrešni algoritmi}
+
+
+\end{document}

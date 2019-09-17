@@ -1,0 +1,86 @@
+\chapter{Osnovne metode snovanja algoritmov}
+
+\section{Metode snovanja}
+
+\exe{Naštej nekaj metod snovanja algoritmov.}
+
+
+\exe{Pri katerih metodah snovanja algoritmov se osredotočamo na reševanje podproblemov.}
+
+
+\section{Groba aritmetika}
+
+\intro{V tem razdelku najdemo nekaj nalog, ki temeljijo na uporabi metode grobe sile oz. uporabe definicije problema, za
+razvoj aritmetičnih algoritmov za nekatere osnovne aritmetične operacije, kot sta seštevanje in množenje.
+V nadaljevanju predpostavimo, da naravna števila vključujejo število 0.}
+
+
+\exetit{Seštevanje po bitih}{Za dani $n$-bitni naravni števili $a$ in $b$ zasnuj algoritemi za izračun njune vsote, pri čemer kot osnovno operacijo uporabi seštevanje bitov.}
+
+
+\exe{Določi asimptotično časovno zahtevnost za algoritem iz predhodne naloge. Se da hitreje?}
+\ans{$\Theta(n)$. Ne da se hitreje, ker je potrebno upoštevati vseh $n$-bitov.}
+
+
+\exe{Algoritem iz predhodne naloge spremeni, da deluje za števili $a$ in $b$ v desetiškem zapisu.}
+
+
+\exe{Algoritem seštevanja iz predhodne naloge temelji na seštevanju kvečjemu treh števk (števki števili $a,b$ in prenos). Pokaži, da je vsota treh desetiških števk kvečjemu dvomestna. Ali velja enako za števke v poljubni številski osnovi?}
+\ans{Desetiško: $9+9+9=27\leq 99$, šestnajstiško $F+F+F=2D\leq FF$. Za poljubno osnovo $r$ pa zapišemo $(r-1)+(r-1)+(r-1)=3(r-1)\leq (r-1)r + (r-1)$, torej $r^2-3r+2\geq 0$ oz. $(r-2)(r-1)\geq 0$. Trditev torej velja za $r\geq 2$ oz. za vse neunarne zapise števil.}
+
+
+\exetit{Seštevanje preko operacij predhodnik in naslednik}{Za dani $n$-bitni naravni števili $a$ in $b$ zasnuj algoritemi za izračun njune vsote, pri čemer kot osnovni operaciji privzemi $\text{pred}(i)=i-1$, ki vrne prednika števila $i$, in $\text{succ}(i)=i+1$, ki vrne naslednika števila $i$.}
+\ans{\code{add(a,0)=a, add(a,b)=add(succ(a),pred(b))}}
+
+
+\exe{Določi asimptotično časovno zahtevnost za algoritem iz predhodne naloge.}
+\ans{$\Theta(b)=\Theta(2^n).$}
+
+
+\exetit{Množenje z zaporednim prištevanjem}{Za dani $n$-bitni naravni števili $a$ in $b$ zasnuj algoritem za izračun njunega zmnožka $a\cdot b$ z uporabo seštevanja.
+Pri tem uporabi metodo grobe sile in definicijo zmnožka
+$ a\cdot b = \underbrace{b + b \cdots + b}_{a~\text{seštevancev}} $.}
+\ans{Uporabi zanko, ki v $a-1$ korakih izračuna zmnožek.}
+
+
+\exe{Algoritem iz predhodne naloge razširi, da bo deloval pravilno za poljubni celi števili $a$ in $b$.}
+\ans{Upoštevaj vse možne primere pozitivnosti in negativnosti števil $a$ in $b$.}
+
+
+\exe{Določi časovno zahtevnost množenja s prištevanjem glede na a) število $a$ in glede na b) velikost števil (t.j. število bitov, ki jih potrebujemo za dvojiški zapis števil).}
+\ans{Upoštevati moramo tudi časovno zahtevnost seštevanja: a) $\Theta(a\lg a)$, b) $\Theta(n2^n)$, kjer  $n=\lg a$.}
+
+
+\exetitlbl{Potenciranje z zaporednim množenjem}{exp_via_mul}{Za dani $n$-bitni naravni števili $a$ in $b$ zasnuj algoritem za izračun potence $a^b$ z uporabo množenja. Uporabi definicijo
+$ a^b = \underbrace{a\cdot a \cdot\cdots\cdot a}_{b~\text{množencev}} $.}
+
+
+\exe{Naj bo $a$ $n$-bitno naravno število. Koliko bitov potrebujemo za zapis $a^a$?}
+\ans{$ \lg a^a = a\lg a = n2^n. $}
+
+
+\exe{Določi asimptotično časovno zahtevnost za algoritem iz naloge \ref{exp_via_mul}, če imaš na voljo algoritem za množenje dveh $n$-bitnih števil s časovno zahtevnostjo $O(n^2)$.}
+\ans{$O(a N^2)$, kjer je $N\leq n2^n$ (glej predhodno nalogo). Torej $O(a n^2 4^n)=O(n^2 8^n)$. Glej tudi rešitev predhodne naloge.}
+
+
+\section{Groba sila}
+
+\exe{Razvij algoritem za izračun vrednosti polinoma $p(x)$ v točki $x$ po naslednji formuli
+$$ p(x) = \sum_{i=0}^n a_i x^i. $$}
+
+
+\exe{Koliko množenj je potrebnih v algoritmu iz predhodne naloge?}
+\ans{$$ \sum_{i=1}^{n}i = \frac{n(n+1)}{2} = \Theta(n^2). $$}
+
+
+\exe{Izboljšaj algoritem iz predhodne naloge, da bo potreboval $\sim 2n$ množenj.}
+\ans{Potenco $x^n$ računamo sproti po formuli $x^n=x^{n-1}\cdot x$.}
+
+
+\exetit{Hornerjev algoritem}{Izboljšaj algoritem iz predhodne naloge, da bo potreboval $\sim n$ množenj.}
+\ans{V formuli za $p(x)$ zaporedoma izpostavljaj $x$, nato algoritem zasnuj po tako dobljeni formuli.}
+
+
+\section{Namigi in rešitve izbranih nalog}
+
+\shipoutAnswer

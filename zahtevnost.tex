@@ -1,0 +1,83 @@
+\chapter{Zahtevnost algoritmov}
+
+\section{Splošna vprašanja}
+
+\exe{Kaj je zahtevnost algoritma?}
+\ans{Zahtevnost algoritma pove katere in koliko virov potrebuje algoritem za svoje izvajanje (v nekem modelu računanja).}
+
+
+\exe{Naštej nekaj virov, ki jih algoritem lahko potrebuje za svoje izvajanje.}
+
+
+\exe{Kateri viri ustrezajo meri \vic{časa} in kateri \vic{prostora}?}
+
+
+\exe{Kaj je \vic{Von Neumannov} model računalniške arhitekture?}
+
+
+\exe{Kaj je RAM model računanja? Zakaj ga uporabljamo v algoritmiki?}
+
+
+\exe{Kaj je natančna zahtevnost in kaj asiptotična zahtevnost algoritma?}
+
+
+\exe{Od česa je lahko odvisna zahtevnost algoritma? Prikaži s primerom.}
+\ans{Od algoritma, modela računanja in od velikosti vhoda in samih podatkov v vhodu.}
+
+
+\exe{Izberi nek problem, nato naštej nekaj primerov nalog zanj, katerih težavnost je različna:
+\begin{enumerate}
+\item glede na velikost naloge
+\item glede na podatke v sami nalogi.
+\end{enumerate} }
+
+
+\exe{Glede na (vhodne) podatke, katere vrste določanja zahtevnosti poznamo?}
+
+
+\exe{Zakaj najpogosteje uporabljamo zahtevnost v najslabšem primeru?}
+
+
+\exe{Kdo je bil John von Neumann? S čim vsem se je ukvarjal? Katere izmed algoritmov za urejanje je napravil?}
+
+
+\section{Natančna zahtevnost}
+
+
+\exe{Koliko korakov zahteva algoritem \quot{množenje s prištevanjem} (glej nalogo \ref{alg:mul-with-add})?}
+
+
+\exe{Koliko korakov zahteva Eratostenovo sito za poljuben $N$? En korak je mišljen kot odstranjevanje večkratnikov nekega števila $X$.}
+\ans{Odstranjevanje večkratnikov $X$ je potrebno do: hitro vidimo, da za $X<N$ ali tudi $X<N/2$. Z malo razmislega pa pridemo do $X\leq\sqrt{N}$.}
+
+
+\noindent\begin{minipage}{7.5cm}
+\exe{Določi natančno zahtevnost v številu primerjav elementov glede na najboljši, najslabši in povprečni primer za algoritem (zaporednega iskanje, glej \refexe{alg:seqsearch}). Pri tem je $n$ velikost polja $a$.}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{7cm}
+\vspace{1.2em}
+\begin{lstlisting}
+for i = 0 to n-1 do
+	if a[i] == key then return i
+return -1
+\end{lstlisting}
+\end{minipage}
+\ans{Najboljši primer: 1, najslabši primer: $n$ in povprečni primer $(n+1)/2$.}
+
+
+\exe{Zakaj se kot pomembna operacija, s katero ocenjujemo zahtevnost, pogosto pojavi primerjava elementov, primerjavo indeksov pa navadno zanemarimo?}
+
+
+\exe{Določi natančno zahtevnost v smislu realnega časa na poljubnem RAM modelu računanja za algoritem \quot{zaporedno iskanje} iz naloge \refexe{alg:seqsearch}}
+\ans{Najboljši primer: $c_1+c_2+c_3$, najslabši primer: $c_1\cdot(n+1)+c_2\cdot n+c_3$, povprečni primer: $\frac{c_1+c_2}{2}n+\frac{c_1+c_2}{2}+c_3$, kjer je $c_1$ zahtevnost preverjanja pogoja v odločitvenem stavku, $c_2$ cena primerjave elementov in $c_3$ cena stavka return.}
+
+
+\exe{Kolikšna je globina rekurzije pri algoritmu \alg{dvojiškega iskanja}?}
+
+
+\section{Asimptotična zahtevnost}
+
+\section{Namigi in rešitve izbranih nalog}
+
+\shipoutAnswer
