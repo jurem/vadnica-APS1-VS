@@ -2,6 +2,7 @@
 
 \section{Splošna vprašanja}
 
+
 \exe{Kaj je zahtevnost algoritma?}
 \ans{Zahtevnost algoritma pove katere in koliko virov potrebuje algoritem za svoje izvajanje (v nekem modelu računanja).}
 
@@ -57,11 +58,11 @@
 \hspace{1em}
 \begin{minipage}{7cm}
 \vspace{1.2em}
-\begin{lstlisting}
+\begin{rox}
 for i = 0 to n-1 do
 	if a[i] == key then return i
 return -1
-\end{lstlisting}
+\end{rox}
 \end{minipage}
 \ans{Najboljši primer: 1, najslabši primer: $n$ in povprečni primer $(n+1)/2$.}
 
@@ -76,7 +77,233 @@ return -1
 \exe{Kolikšna je globina rekurzije pri algoritmu \alg{dvojiškega iskanja}?}
 
 
+\exe{Kolikokrat natančno se izvede primerjava indeksov v zanki for, katere spodnja meja je $A$ in zgornja $B$? Kolikokrat pa se izvede telo zanke?}
+\ans{Primerjava indexov: $B-A+2$, telo zanke $B-A+1$}
+
+
+\begin{Exercise}
+Kolikokrat se izvede telo notranje zanke v spodnjih algoritmih? Kakšna je vrednost spremenljivke $s$? Podaj ugotovitve glede na parametre funkcije.\\
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun a(n) is
+	s = 0
+	for (i = 0; i < 7 * n; i++) do
+		s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun b(n) is
+	s = 0
+	for (i = 0; i < 8 * n; i += 2) do
+		s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun c(n, p) is
+	s = 0
+	for (i = 0; i < n; i += p) do
+		s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun d(m, n, p) is
+	s = 0
+	for (i = m; i < n; i += p) do
+		s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun e(n) is
+	s = 0
+	for (i = 1; i < n; i *= 2) do
+		s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun f(n, p) is
+	s = 0
+	for (i = 1; i < n; i *= p) do
+		s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun g(n, m, p) is
+	s = 0
+	for (i = 0; i < 3 * n; i += p) do
+		for (j = 0; j < m; j += 2 * p) do
+			s++
+\end{rox}
+\end{minipage}
+%
+\begin{minipage}{0.5\textwidth}
+\begin{rox}
+fun h(n) is
+	s = 0
+	for (i = 1; i <= n; i++) do
+		for (j = 1; j <= i; j++) do
+			s++
+\end{rox}
+\end{minipage}
+\end{Exercise}
+\ans{a) $s=7n$, b) $s=4n$, c) $s=\ceil{n/p}$, d) $s=\ceil{\frac{n-m}{p}}$, e) $s=\ceil{\lg n}$, f) $s=\ceil{\log_p n}$,
+g) $s=3/2nm/p^2$, h) $s=n(n+1)/2\sim n^2/2$}
+
+
 \section{Asimptotična zahtevnost}
+
+
+\exe{Zapiši formalne definicije za $O$, $\Omega$ in $\Theta$ notacijo. Kaj pravzaprav s tem definiramo: relacijo, funkcijo ali množico?}
+
+\exe{Zapiši formalne definicije za $o$, $\omega$ notacijo. V čem se $o$ notacija razlikuje od $O$ notacije in $\omega$ od $\Omega$?}
+
+\exe{Obrazloži podobnosti in razlike med naslednjimi pojmi:
+\begin{itemize}
+\item zgornja asimptotična meja,
+\item tesna zgornja asimptotična meja,
+\item spodnja asimptotična meja,
+\item tesna spodnja asimptotična meja in
+\item tesna asimptotična meja.
+\end{itemize}}
+
+
+\exe{Kako v praksi \emph{zlorabljamo} asimptotično notacijo in relacijo $\in$?}
+
+
+\exe{Kako si razlagamo \vic{veriženje} asimptotične notacije? Npr.
+	$$ 5n^4 + 3n^2 + n = 5n^4 + O(n^2) = O(n^4). $$}
+
+
+\exe{Dana je časovna zahtevnost $T(n) = 5n^3 + 3n^2 + 2$. Kaj od naštetega velja?
+\begin{center}
+\begin{tabular}{lll}
+a) $T(n)=O(n\lg n)$	& d) $T(n)=\Theta(n\lg n)$	& g) $T(n)=\Omega(n\lg n)$ \\[8pt]
+b) $T(n)=O(n^3)$	& e) $T(n)=\Theta(n^3)$		& h) $T(n)=\Omega(n^3)$ \\[8pt]
+c) $T(n)=O(n^9)$	& f) $T(n)=\Theta(n^9)$		& i) $T(n)=\Omega(n^9)$	
+\end{tabular}
+\end{center}}
+\ans{b) c) e) g) h)}
+
+
+\exe{Za dani funkciji obkroži veljavne trditve:
+$$f(n) = 9999n^2 + 999n\log n + 99 \quad\mbox{in}\quad g(n) = n^3 + 2n^2+3.$$
+\begin{center}
+\begin{tabular}{lll}
+a) $f(n)=O(n^{99})$ & b) $g(n) = \Omega(1)$ & c) $f(n)$ narašča hitreje kot $g(n)$  \\[8pt]
+d) $f(n)=O(n^2)$ & e) $g(n) = \Omega(n^3)$ & f) $f(n)+g(n) = O(g(n))$	\\[8pt]
+g) $O(f(n)) = n^2$ & h) $g(n) = \Omega(2^n)$ & i) $f(n)\cdot g(n) = \Theta(9999n^2)$ \\[8pt]
+j) $f(n)=O(n^{1.618})$ & k) $g(n) = O((1+1+1)^n)$ & l) $g(n)/f(n) = O(n \lg n)$
+\end{tabular}
+\end{center}}
+\ans{a) b) d) e) f) k) l)}
+
+
+\exe{Katere izmed spodnjih trditev so resnične?
+\begin{center}
+\begin{tabular}{ll}
+a) $\sqrt{4}\,n^4\log^4 n + 4n^4=\Omega(n^{3}\log^3 n)$ & b) $3n^2+2n+1=\Omega(n\log^{12} n)$ \\[8pt]
+c) $2^{3456} = O(\log n)$ & d) $n^{2/3}=O(n^{0,666})$ \\[8pt]
+e) $\Omega(n^{\lg 4})=(\sqrt{16})^{\lg n}$ & f) $27^{\log_3 n}=\Theta(n^3)$ \\[8pt]
+g) $\sum_{i=1}^n O(n)=\Theta(n^2)$ & h) $(n+\lg n)^{42}-n^{42}=\Omega(n^{42})$ \\[8pt]
+\end{tabular}
+\end{center}
+}
+
+
+\exe{Pokaži po definiciji in, da velja:
+	\begin{enumerate}
+		\item $5n^2-12n = O(n^2)$
+		\item $5n^2+12n = O(n^2)$
+		\item $3n^3+5n^2-6n = \Theta(n^3)$.
+\end{enumerate}}
+
+
+\exe{Reši predhodno nalogo še z uporabo limit.}
+
+
+\exe{Dokaži, da za asimptotično notacijo velja tranzitivnost:
+$$ f(n)=O(g(n)) \land g(n)=O(h(n)) \implies f(n)=O(h(n)). $$
+Za katere vrste notacij ($\Omega, \Theta, o, \omega$) še velja podobno?}
+
+
+\exe{Za različne asimptotske zahtevnosti izračunaj zahtevnost pri dvakrat večji nalogi. Podaj rešitev glede na zahtevnost pri prvotni velikosti.
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item $\Theta(n)$
+		\item $\Theta(n^2)$
+		\item $\Theta(n^3)$
+		\item $\Theta(\lg n)$
+		\item $\Theta(n \lg n)$
+		\item $\Theta(2^n)$
+	\end{enumerate}
+\end{multicols}}
+\ans{
+a) $2cn$, $2\times$, b) $4cn^2$, $4\times$, c) $7cn^3$, $8\times$, d) $c\lg(2n)=c+c\lg n$, $+c$, e) $c2n\lg(2n)=2cn+2cn\lg n$, $+cn, 2\times$, f) $c2^{2n}$, $\times2^n$}
+
+
+\exe{(Moorov zakon) Dan je nek algoritem za nek problem. Kako veliko nalogo lahko rešimo na dvakrat hitrejšem računalniku v enakem času? Če je časovna zahtevnost algoritma:
+	\begin{enumerate}
+		\item logaritemska
+		\item polinomska
+		\item eksponentna.
+\end{enumerate}}
+\ans{Izhajamo iz: $T_2(n)=1/2T_1(n)$ (2x hitrejši) in $T_2(n_2)=T_1(n_1)$ (na voljo imamo enako časa). Torej $T_1(n_2)=2T_1(n_1)$.
+	\begin{enumerate}
+		\item log: $T(n)=O(\lg n)$: $c_1\lg n_2=2c_1\lg n_1$, torej $n_2=n_1^2$.
+		\item poly: $T(n)=O(n^k)$: $c_1n_2^k=2c_1n_1^k$ oz. $n_2=\sqrt[k]{2}n_1$. Razmišljaj: $k=1$ torej 2x večjo nalogo, $k=2$ torej $\sqrt{2}$ večjo nalogo.
+		\item exp: $T(n)=O(2^n)$: $c_12^{n_2}=2c_12^{n_1}=2^{n_1+1}$, torej $n_2=n_1+1$
+\end{enumerate}}
+
+
+\paragraph{Še nekaj težjih nalog}~\\
+
+\exe{Dokaži $f(n)=O(g(n)) \iff g(n)=\Omega(f(n))$}
+
+
+\exe{Dokaži $f(n)=O(g(n)) \land f(n)=\Omega(g(n)) \iff f(n)=\Theta(g(n))$}
+
+
+\exe{Dokaži $f(n)=o(g(n)) \implies f(n)=O(g(n))$}
+
+
+\exe{Dokaži $f(n)=\omega(g(n)) \implies f(n)=\Omega(g(n))$}
+
+
+\exe{Kako se definicije asimptotičnih notacij z limitami povezujejo s formalnimi definicijami? Pokaži, da
+$$ f(n)=O(g(n)) \iff \lim_{n\to\infty} {f(n) \over g(n)} < \infty. $$
+Podobno razmisli še za ostale notacije.}
+
+
+\exe{Pokaži, da so potence logaritma od zgoraj omejene s polinomi, torej $O(\log^a n) = O(n^b)$ za poljubni pozitivni konstanti $a$ in $b$. Namig: limite in l'Hospitalovo pravilo.}
+\ans{$$a,b\in\mathbb{N}: \lim_{n\to\infty}\frac{\ln^a n}{n^b} = \lim_{n\to\infty}\frac{a/n\ln^{a-1} n}{bn^{b-1}} = \lim_{n\to\infty}\frac{a/n\ln^{a-1} n}{bn^b} = \lim_{n\to\infty}\frac{a!}{b^an^b} = 0. $$}
+
+
+\exe{Pokaži, da so polinomi od zgoraj omejeni z eksponentnimi funkcijami, torej: $O(n^b) = O(c^n)$, za poljubni pozitivni konstanti $b$ in $c$.}
+\ans{$$a,b\in\mathbb{N}: \lim_{n\to\infty}\frac{n^a}{b^n} = \lim_{n\to\infty}\frac{an^{a-1}}{b^n\ln b} = \lim_{n\to\infty}\frac{a!}{b^n\ln^a b} = 0.$$}
+
+
+\section{Mojstrov izrek}
+
+
+\exe{Nek algoritem smo zasnovali po metodi \vic{deli in vladaj}, pri čemer problem razdelimo na sedem podproblemov (iste vrste), od katerih je vsak polovične velikosti. Priprava podproblemov terja $5n^2+3n$ korakov in sestavljanje terja $15n$ korakov.
+\begin{enumerate}
+	\item Zapiši časovno zahtevnost $T(n)$ algoritma z rekurenčno enačbo.
+	\item Reši enačbo s pomočjo znanega izreka.
+	\item Ali velja $T(n)=O(n^{2.807})$? Zakaj?
+\end{enumerate}}
+\ans{a) $T(n)=7T(n/2)+5n^2+18n$ oz. $T(n)=7T(n/2)+O(n^2)$, b) $a=7, b=2, d=2$, master theorem: $a>b^d$, torej $T(n)=O(n^{\log_2 7})=O(n^{2.808})$ c) ne, ker $\log_2 7 > 2.807$}
+
 
 \section{Namigi in rešitve izbranih nalog}
 

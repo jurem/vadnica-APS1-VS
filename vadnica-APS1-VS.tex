@@ -1,17 +1,40 @@
 \documentclass[a4paper,12pt]{scrbook}
 \usepackage[utf8]{inputenc}
 \usepackage[slovene]{babel}
+\usepackage[unicode]{hyperref}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{graphicx}
-\usepackage{hyperref}
 
+\usepackage{multicol}
+
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0pt, topsep=5pt}
+\setlist[enumerate]{itemsep=0pt, topsep=5pt}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% fonts
+\usepackage[T1]{fontenc}
+%\usepackage{newpxtext,newpxmath}
+\usepackage{newtxtext,newtxmath}
+%\usepackage{mathptmx}
+%\usepackage{palatino}
+%\usepackage{pxfonts}
+%\usepackage{mathpazo}
+%\usepackage{kpfonts}
+%\usepackage{tgpagella}
+
+
+% scrbook: to have the same font in headings
+\setkomafont{disposition}{\bfseries}
 
 
 % Okolje za pisanje nalog
-\usepackage{exercise}
-%\usepackage[answerdelayed]{exercise}
+%\usepackage{exercise}
+\usepackage[answerdelayed]{exercise}
 \renewcommand{\ExerciseHeaderTitle}{~\textit{\ExerciseTitle}~~}
 \renewcommand{\ExerciseHeaderNB}{\textsf{\textbf{\thechapter.\theExercise}}}
 \renewcommand{\ExerciseHeader}{\par\noindent\ExerciseHeaderNB\ExerciseHeaderTitle}
@@ -35,25 +58,27 @@
 % algorithm name
 \def\alg#1{\quot{#1}}
 
-% Vrste nalog:
+
+% Vrste nalog - TODO:
 % * zgled (naloga + rešitev + pojasnilo)
 % * naloga z namigom
 % * naloga z rešitvijo
 % * naloga (brez dodatkov)
 % * izziv (težja naloga)
 % * programerska naloga
-% * sadistična naloga (npr. pointer na pointer na pointer na pointer, forktree pri OS)
+% * zanimivost (npr. Kdo je bil Evklid?)
+% * raziskovalna naloga
+% * "sadistična" naloga (naloga, ki pretirava z nekaterimi koncepti, npr. pointer na pointer na pointer, vendar uči "globoko" razmišljanje)
 
 
-\usepackage{xcolor}
 \usepackage{listings,lstautogobble}
 \lstset{frame=,
 	language=Pascal,
-	aboveskip=2mm,
-	belowskip=2mm,
+	aboveskip=1mm,
+	belowskip=1mm,
 	showstringspaces=false,
 	columns=flexible,
-	basicstyle={\ttfamily},
+	basicstyle={\small\ttfamily},
 	numbers=none,
 	numberstyle=\tiny\color{gray},
 	keywordstyle=\color{blue},
@@ -67,25 +92,43 @@
     autogobble=true
 }
 
+\lstnewenvironment{rox}{
+	\lstset{
+		mathescape=true,
+		numbers=none,
+		tabsize=4, 
+		basicstyle=\color{Black}\small\sffamily,
+		keywordstyle=\color{RoyalBlue}\small\sffamily\bfseries,
+		keywords={fun,is,end,if,then,else,elif,elseif,for,to,do,while,repeat,loop,return},
+	    autogobble=true
+	}
+}{}
+
 % page layout
 \textwidth 15cm
 
 
 % % % % % % % % % % % % % % % % % % % % %
 
-
-\def\angl#1{(angl. #1)}
+% text helpers
 \def\intro#1{\textit{#1}}
+\def\angl#1{(angl. #1)}
 \def\vic#1{\emph{#1}}
-\def\code#1{\textsf{#1}}
+\def\id#1{\textsf{#1}}
 \def\quot#1{''#1``}
+\def\code#1{\textsf{#1}}
 
+% math helpers
 \def\NN{\ensuremath{\mathbb{N}}}
 \def\ZZ{\ensuremath{\mathbb{Z}}}
 \def\RR{\ensuremath{\mathbb{R}}}
+\def\set#1{\{#1\}}
+\def\floor#1{\lfloor#1\rfloor}
+\def\ceil#1{\lceil#1\rceil}
 
+% other 
 \def\enumabc{\setlength{\itemsep}{0cm}\setlength{\parskip}{0cm}}
-
+\def\yesno{\fbox{\begin{minipage}{0.5cm}\vspace{0.4cm}\hspace{0.5cm}\end{minipage}}\vspace{1pt}}
 
 \renewcommand{\labelenumi}{\alph{enumi})}
 \setlength{\parskip}{-0cm}
@@ -93,7 +136,48 @@
 
 % % % % % % % % % % % % % % % % % % % % %
 
+\makeatletter
+\def\email#1{\gdef\@email{#1}}
+\def\version#1{\gdef\@version{#1}}
+\makeatother
+
+\title{Vadnica visokih strokovnih algoritmov in podatkovnih struktur 1}
+\subtitle{(delovni osnutek, samo za interno uporabo)}
+\author{Jurij Mihelič}
+\email{jurij.mihelic@fri.uni-lj.si}
+\version{0}
+%\dedication{ads}
+
+
 \begin{document}
+
+{ % locally disable clear double page
+\let\cleardoublepage\clearpage
+\maketitle
+\thispagestyle{empty}
+\noindent
+Začenjate s prebiranjem zbirke nalog za predmet \vic{Algoritmi in podatkovne strukture} za visokošolski strokovni študijski program.
+Gre za delovni osnutek, kar pomeni, da naloge pogosto niso dovolj dobro izpiljene in preverjene.
+Prav tako besedilo verjetno vsebuje še veliko slovničnih in drugih napak.
+Da študentom olajšam učenje snovi in opravljanje izpita, sem osnutek vseeno javno objavil. Želim vam mnogo prijetnih algoritmičnih uric.
+\vfill
+\noindent\rule{\textwidth}{0.4pt}\\[.5\baselineskip]
+Naslov: \makeatletter\@title\makeatother\\
+Različica: \makeatletter\@version\makeatother\\
+Datum: \makeatletter\@date\makeatother\\[\baselineskip]
+Avtor: \makeatletter\@author\makeatother\\
+Elektronska pošta: \makeatletter\@email\makeatother\\[\baselineskip]
+Laboratorij za algoritmiko\\
+Fakulteta za računalništvo in informatiko\\
+Univerza v Ljubljani\\
+Večna pot 113, 1000 Ljubljana\\[\baselineskip]
+\parbox{12cm}{This work is for internal purposes and is licensed under\\ Creative Commons Attribution-ShareAlike 3.0 Unported\\
+(CC BY-SA 3.0).}
+\hfill\includegraphics[scale=0.6]{cc-by-sa.pdf}\\[.5\baselineskip]
+\noindent\rule{\textwidth}{0.4pt}\\[\baselineskip]
+\clearpage
+}
+\makeatother
 
 \tableofcontents
 
@@ -101,12 +185,12 @@
 \include{zahtevnost}
 \include{podatkovne_strukture}
 \include{urejanja}
-\include{drevesa}
-\include{grafi}
-\include{metode_snovanja}
+%\include{drevesa}
+%\include{grafi}
+%\include{metode_snovanja}
 \include{groba_sila}
-\include{deli_in_vladaj}
-%\chapter{Požrešni algoritmi}
+%\include{deli_in_vladaj}
+%\include{pozresni_algoritmi}
 
 
 \end{document}
